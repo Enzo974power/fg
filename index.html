@@ -1,119 +1,95 @@
-t <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>FG Games</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            margin: 20px;
-            cursor: pointer;
-        }
-        input[type="password"] {
-            padding: 10px;
-            font-size: 16px;
-        }
+<meta charset="UTF-8">
+<title>FG Games</title>
 
-        /* Style pour l'image plein écran */
-        #fullImage {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain; 
-            background-color: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-    </style>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  text-align:center;
+  margin-top:50px;
+}
+button{
+  padding:15px 30px;
+  font-size:18px;
+  margin:20px;
+  cursor:pointer;
+}
+#fullImage{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  object-fit:contain;
+  background:rgba(0,0,0,.9);
+  z-index:9999;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Bienvenue sur espace Enzo</h1>
-<p>petitcoquain va</p>
+<h1>Bienvenue sur FG Games 🎮</h1>
+<p>Site pour mes amis 😎</p>
 
 <div id="loginDiv">
-    <input type="password" id="mdpInput" placeholder="Entre le mot de passe">
-    <button onclick="verifierMDP()">Valider</button>
+  <input type="password" id="mdpInput" placeholder="Entre le mot de passe">
+  <button onclick="verifierMDP()">Valider</button>
 </div>
 
-<div id="content" style="display:none;">
-    <button onclick="window.open('https://bloxd.io/game/bedwars_4v4v4v4', '_blank')">
-        Bedwars
-    </button>
-    <button onclick="window.open('https://rocketgoal.io/', '_blank')">
-        Rocket League
-    </button>
- <button onclick="window.open('https://slither.io//', '_blank')">
-        slither.io
-    </button>    
- <button onclick="window.open('https://diep.io//', '_blank')">
-        diep.io
-    </button>     
-<button onclick="window.open('https://curvefever.pro///', '_blank')">
-        Curve Fever Pro
-    </button>  
-    <button onclick="window.open('https://play2048.co///', '_blank')">
-        2048
-    </button>
-    
-</div>
+<div id="content" style="display:none;"></div>
 
 <script>
-const motDePasse = "caca_97412";
 
-function verifierMDP() {
-    const saisie = document.getElementById("mdpInput").value;
-    if(saisie === motDePasse){
-        // Masquer login et afficher contenu
-        document.getElementById("loginDiv").style.display = "none";
-        document.getElementById("content").style.display = "block";
+const motDePasse="Tipitou974!";
 
-        // 🔹 Charger le chat Tawk.to seulement après mot de passe correct
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/698f163385e35c1c3911e648/1jhbetes8';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
+const jeux=[
+["Bedwars","https://bloxd.io/game/bedwars_4v4v4v4"],
+["Rocket League","https://rocketgoal.io/"],
+["Slither.io","https://slither.io/"],
+["Diep.io","https://diep.io/"],
+["Curve Fever Pro","https://curvefever.pro/"],
+["2048","https://play2048.co/"],
+["Espace de Enzo","https://enzo974power.github.io/fg/"],
+["Poxel.io","https://poxel.io/"],
+["Shell Shockers","https://shellshock.io/"],
+["Geometry Dash","https://slopegame.io/geometry-dash/"]
+];
 
-    } else {
-        alert("Mauvais mot de passe ! Le site est bloqué.");
-        window.location.href = "https://www.google.com";
-    }
+function verifierMDP(){
+  if(mdpInput.value===motDePasse){
+    loginDiv.style.display="none";
+    content.style.display="block";
+
+    jeux.forEach(j=>{
+      const b=document.createElement("button");
+      b.textContent=j[0];
+      b.onclick=()=>window.open(j[1],"_blank");
+      content.appendChild(b);
+    });
+
+    var s=document.createElement("script");
+    s.src="https://embed.tawk.to/698f163385e35c1c3911e648/1jhbetes8";
+    s.async=true;
+    document.body.appendChild(s);
+
+  }else{
+    alert("Mauvais mot de passe !");
+    window.location="https://www.google.com";
+  }
 }
 
-// 🔹 Détecter Entrée pour l'image plein écran
-document.addEventListener("keydown", function(event) {
-    if(event.key === "Enter") {
-        const contentDiv = document.getElementById("content");
-        // Image seulement si contenu visible
-        if(contentDiv.style.display === "block" && !document.getElementById("fullImage")) {
-            const img = document.createElement("img");
-            img.src = "surprise.png"; 
-            img.id = "fullImage";
-            img.alt = "Surprise !";
-
-            // Cliquer pour fermer l'image
-            img.addEventListener("click", function(){ img.remove(); });
-
-            document.body.appendChild(img);
-        }
-    }
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && content.style.display==="block" && !fullImage){
+    const img=document.createElement("img");
+    img.src="surprise.png";
+    img.id="fullImage";
+    img.onclick=()=>img.remove();
+    document.body.appendChild(img);
+  }
 });
-</script>
 
+</script>
 </body>
 </html>
