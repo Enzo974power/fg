@@ -33,26 +33,16 @@ button{
 <h1>Bienvenue sur FG Games 🎮</h1>
 <p>Site pour mes amis 😎</p>
 
-input[type="password"]{
-  padding:15px;
-  font-size:18px;
-  width:250px;
-  border-radius:8px;
-}
-
-#loginDiv button{
-  padding:15px 35px;
-  font-size:18px;
-  margin-left:10px;
-  border-radius:8px;
-}
-
+<div id="loginDiv">
+  <input type="password" id="mdpInput" placeholder="Entre le mot de passe">
+  <button onclick="verifierMDP()">Valider</button>
+</div>
 
 <div id="content" style="display:none;"></div>
 
 <script>
 
-const motDePasse="Tipitou974!";
+const motDePasse="trisomique";
 
 const jeux=[
 ["Bedwars","https://bloxd.io/game/bedwars_4v4v4v4"],
