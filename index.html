@@ -85,10 +85,7 @@ document.addEventListener("keydown",e=>{
     const img=document.createElement("img");
     img.src="surprise.png";
     img.id="fullImage";
-    img.onc<video width="400" controls>
-  <source src="nomdelavideo.mp4" type="video/mp4">
-  Ton navigateur ne supporte pas la vidéo.
-</video>lick=()=>img.remove();
+    img.onclick=()=>img.remove();
     document.body.appendChild(img);
   }
 });
