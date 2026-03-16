@@ -2,94 +2,209 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>FG Games</title>
+<title>PRONOTE - Espace élèves - Metice Réunion</title>
 
 <style>
+
 body{
-  font-family:Arial,sans-serif;
-  text-align:center;
-  margin-top:50px;
+    font-family: Arial;
+    text-align:center;
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg,#141e30,#243b55);
+    color:white;
 }
+
+h1{
+    margin-top:40px;
+}
+
 button{
-  padding:15px 30px;
-  font-size:18px;
-  margin:20px;
-  cursor:pointer;
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    background:#00ff88;
+    transition:0.2s;
 }
+
+button:hover{
+    transform:scale(1.1);
+    background:#00cc6a;
+}
+
+input{
+    padding:10px;
+    font-size:16px;
+}
+
+#content{
+    animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
 #fullImage{
-  position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
-  object-fit:contain;
-  background:rgba(0,0,0,.9);
-  z-index:9999;
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+object-fit:contain;
+background:black;
+z-index:9999;
 }
+
 </style>
 </head>
 
+
 <body>
 
-<h1>Bienvenue sur FG Games 🎮</h1>
-<p>Site pour mes amis 😎</p>
+<h1>Bienvenue sur FG</h1>
+<p>Site pour les amis</p>
 
 <div id="loginDiv">
-  <input type="password" id="mdpInput" placeholder="Entre le mot de passe">
-  <button onclick="verifierMDP()">Valider</button>
+<input type="password" id="mdpInput" placeholder="Mot de passe">
+<button onclick="verifierMDP()">Valider</button>
 </div>
 
-<div id="content" style="display:none;"></div>
+
+<div id="content" style="display:none">
+
+<input type="text" id="searchBar" placeholder="Rechercher un jeu..." onkeyup="searchGames()">
+
+<hr>
+
+<h2>🔥 Multijoueur</h2>
+
+<button onclick="window.open('https://bloxd.io/','_blank')">Bloxd</button>
+<button onclick="window.open('https://shellshock.io/','_blank')">ShellShock</button>
+<button onclick="window.open('https://ev.io/','_blank')">Ev.io</button>
+<button onclick="window.open('https://deadshot.io/','_blank')">Deadshot</button>
+<button onclick="window.open('https://zombsroyale.io/','_blank')">Zombs Royale</button>
+
+<hr>
+
+<h2>🎮 Jeux .io</h2>
+
+<button onclick="window.open('https://slither.io/','_blank')">Slither</button>
+<button onclick="window.open('https://agar.io/','_blank')">Agar</button>
+<button onclick="window.open('https://splix.io/','_blank')">Splix</button>
+<button onclick="window.open('https://paper-io.com/','_blank')">Paper.io</button>
+
+<hr>
+
+<h2>⚽ Fun</h2>
+
+<button onclick="window.open('https://smashkarts.io/','_blank')">Smash Karts</button>
+<button onclick="window.open('https://slowroads.io/','_blank')">Slow Roads</button>
+<button onclick="window.open('https://basketbros.io/','_blank')">Basket Bros</button>
+
+<hr>
+
+<h2>🧠 Réflexion</h2>
+
+<button onclick="window.open('https://play2048.co/','_blank')">2048</button>
+<button onclick="window.open('https://tetris.com/play-tetris','_blank')">Tetris</button>
+<button onclick="window.open('https://minesweeper.online/','_blank')">Démineur</button>
+
+<hr>
+
+<h2>📱 Vidéos</h2>
+
+<button onclick="window.open('https://youtube.com','_blank')">YouTube</button>
+<button onclick="window.open('https://tiktok.com','_blank')">TikTok</button>
+
+</div>
+
 
 <script>
 
-const motDePasse="caca_97412";
+const mdp1="azerty!"
+const mdp2="Tipitou974!"
+const mdp3="000"
 
-const jeux=[
-["Bedwars","https://bloxd.io/game/bedwars_4v4v4v4"],
-["Rocket League","https://rocketgoal.io/"],
-["Slither.io","https://slither.io/"],
-["Diep.io","https://diep.io/"],
-["Curve Fever Pro","https://curvefever.pro/"],
-["2048","https://play2048.co/"],
-["Espace de Enzo","https://enzo974power.github.io/fg/"],
-["Poxel.io","https://poxel.io/"],
-["Shell Shockers","https://shellshock.io/"],
-["Geometry Dash","https://slopegame.io/geometry-dash/"]
-];
-https://github.com/Enzo974power/fg/blob/main/20260214_092218.mp4
 function verifierMDP(){
-  if(mdpInput.value===motDePasse){
-    loginDiv.style.display="none";
-    content.style.display="block";
 
-    jeux.forEach(j=>{
-      const b=document.createElement("button");
-      b.textContent=j[0];
-      b.onclick=()=>window.open(j[1],"_blank");
-      content.appendChild(b);
-    });
+let saisie=document.getElementById("mdpInput").value
 
-    var s=document.createElement("script");
-    s.src="https://embed.tawk.to/698f163385e35c1c3911e648/1jhbetes8";
-    s.async=true;
-    document.body.appendChild(s);
+if(saisie===mdp1 || saisie===mdp2 || saisie===mdp3){
 
-  }else{
-    alert("Mauvais mot de passe !");
-    window.location="https://www.google.com";
-  }
+document.getElementById("loginDiv").style.display="none"
+document.getElementById("content").style.display="block"
+
 }
 
-document.addEventListener("keydown",e=>{
-  if(e.key==="Enter" && content.style.display==="block" && !fullImage){
-    const img=document.createElement("img");
-    img.src="surprise.png";
-    img.id="fullImage";
-    img.onclick=()=>img.remove();
-    document.body.appendChild(img);
-  }
-});
+else{
+
+alert("Mot de passe incorrect")
+
+}
+
+}
+
+
+function searchGames(){
+
+let input=document.getElementById("searchBar")
+let filter=input.value.toLowerCase()
+let buttons=document.getElementsByTagName("button")
+
+for(let i=0;i<buttons.length;i++){
+
+let txt=buttons[i].textContent
+
+if(txt.toLowerCase().indexOf(filter)>-1){
+
+buttons[i].style.display=""
+
+}
+
+else{
+
+buttons[i].style.display="none"
+
+}
+
+}
+
+}
+
+
+document.addEventListener("keydown",function(event){
+
+if(event.key==="Enter"){
+
+let existing=document.getElementById("fullImage")
+
+if(existing){
+
+existing.remove()
+
+}
+
+else{
+
+let img=document.createElement("img")
+
+img.src="surprise.png"
+img.id="fullImage"
+
+document.body.appendChild(img)
+
+}
+
+}
+
+})
 
 </script>
+
 </body>
 </html>
